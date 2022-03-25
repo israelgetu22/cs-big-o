@@ -193,7 +193,16 @@ function getNumbersSquared(numbers) {
 // ANSWER: O(n) - Linear Time
 
 // Q: Is it possible to improve this function's space complexity? If it is, write a new function below.
-// ANSWER:
+// ANSWER: Yes
+
+function getNumbersSquared2(numbers) {
+  let squaredValue = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    squaredValue = numbers[i] * numbers[i];
+    // answers.push(squaredValue)
+    console.log(squaredValue);
+  }
+}
 
 // 15) Here are two functions that you came up with to count how many of each letter is in a given string and return an object with the individual counts:
 
@@ -256,11 +265,78 @@ function countLettersRoundTwo(str) {
 }
 
 // Q: Do these functions have the same space complexity?
-// ANSWER:
+// ANSWER:O(n)
 
 // Q: What is the space complexity of each?
-// ANSWER - countLetters:
-// ANSWER - countLettersRoundTwo:
+// ANSWER - countLetters:O(n)
+// ANSWER - countLettersRoundTwo:O(n)
 
 // Q: Explain how you came to your conclusions about the space complexity of each function.
 // ANSWER:
+/*
+letters => O(n)
+splitStr => O(n)
+countLetters => O(2n) => O(n)
+letters => O(n)
+countLettersRoundTwo => O(n)
+*/
+
+let str = "abcdefg";
+
+function countLettersRoundTwo(str) {
+  // this contains a RegEx or Regular Expression, feel free to google
+  str = str.toLowerCase().replace(/([^a-z])+/g, "");
+  let letters = {};
+  for (let i = 0; i < str.length; i++) {
+    if (letters.hasOwnProperty(str[i])) {
+      letters[str[i]]++;
+    } else {
+      letters[str[i]] = 0;
+    }
+  }
+  return letters;
+}
+
+function countLetters(str) {
+  let letters = {
+    a: 0,
+    b: 0,
+    c: 0,
+    d: 0,
+    e: 0,
+    f: 0,
+    g: 0,
+    h: 0,
+    i: 0,
+    j: 0,
+    k: 0,
+    l: 0,
+    m: 0,
+    n: 0,
+    o: 0,
+    p: 0,
+    q: 0,
+    r: 0,
+    s: 0,
+    t: 0,
+    u: 0,
+    v: 0,
+    w: 0,
+    x: 0,
+    y: 0,
+    z: 0,
+  };
+
+  str = str.toLowerCase();
+  const splitStr = str.split("");
+
+  splitStr.forEach((char) => {
+    if (letters.hasOwnProperty(char)) {
+      letters[char]++;
+    }
+  });
+
+  return letters;
+}
+
+console.log(countLetters(str));
